@@ -409,7 +409,7 @@ cat(sprintf("Test Accuracy: %.4f | ROC-AUC: %.4f
 # 12. GitHub Repository and Reproducibility Architecture
 
 Our complete repository is publicly available on GitHub:  
-👉 **`https://github.com/chiragasija/SkyConnect_DA3.git`**
+👉 **`https://github.com/ChiragAsija1323/SkyConnect_DA3`**
 
 ### Repository Directory Layout:
 ```
@@ -441,7 +441,7 @@ SkyConnect_DA3/
 ### Commands to Clone and Verify Pipeline:
 ```bash
 # 1. Clone the repository
-git clone https://github.com/chiragasija/SkyConnect_DA3.git
+git clone https://github.com/ChiragAsija1323/SkyConnect_DA3.git
 cd SkyConnect_DA3
 
 # 2. Execute master analytical pipeline (re-computes all stats and plots)
