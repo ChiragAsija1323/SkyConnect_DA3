@@ -1,0 +1,10 @@
+Network_Metric,Value
+Total Vertices (Airports),"3,388"
+Total Directed Edges (Flight Segments),"66,288"
+Unique Route Pairs (Simplified Graph),"36,710"
+Network Density,0.00578
+Reciprocity (% Round-Trip Route Segments),97.06%
+Global Clustering Coefficient (Transitivity),0.2491
+Mean Degree per Airport,39.13
+Maximum Degree (Atlanta ATL),"1,810"
+Power-Law Scaling Exponent (Gamma),1.69 (Scale-Free)

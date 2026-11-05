@@ -1,0 +1,5 @@
+Variable,Mean,Std_Dev,Median,Q1,Q3,IQR,Min,Max,Skewness,Excess_Kurtosis,Outlier_Count,Outlier_Pct
+elevation_ft,1098.24,1767.71,367.5,73,1276,1203,-1266,14472,2.94,11.41,503,11.01
+num_runways,1.49,0.83,1,1,2,1,0,11,2.07,7.95,129,2.82
+max_runway_length,7669.59,2770.07,7571,5594,9842,4248,0,16798,0.07,-0.13,3,0.07
+total_routes,28.7,93.9,4,0,14,14,0,1826,6.95,68.56,638,13.96

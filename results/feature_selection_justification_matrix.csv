@@ -1,0 +1,13 @@
+Feature,Role,Statistical_Evaluation,Multicollinearity_VIF,Selection_Decision
+max_runway_length,Predictor,"Welch t = -36.31, p < 2.2e-16, Cohen's d = 1.39",1.13 (< 5.0),RETAIN (Primary Physical Driver)
+airport_type,Predictor,"Pearson Chi2 = 1501.7, p < 2.2e-16, Cramer's V = 0.58",N/A (Factor),RETAIN (Top Infrastructure Categorical Driver)
+num_runways,Predictor,"Mann-Whitney W = 691602, p = 1.80e-45, Rank-Biserial = 0.48",1.09 (< 5.0),RETAIN (Operational Capacity Predictor)
+continent,Predictor,"One-Way ANOVA F = 102.4, p = 1.27e-102, Eta-Sq = 0.102",N/A (Factor),RETAIN (Macro-Geographical Network Driver)
+has_paved_runway,Predictor,"Pearson Chi2 = 16.07, p = 6.11e-05, Cramer's V = 0.06",N/A (Binary),RETAIN (Essential Paved Surface Indicator)
+latitude_deg,Predictor,"Spatial Coordinate, Pearson r = 0.14, VIF = 1.10",1.10 (< 5.0),RETAIN (Spatial Transit Corridor Predictor)
+longitude_deg,Predictor,"Spatial Coordinate, Pearson r = -0.16, VIF = 1.14",1.14 (< 5.0),RETAIN (Spatial Transit Corridor Predictor)
+elevation_ft,Predictor,"Mann-Whitney W = 1209563, p = 4.32e-11, VIF = 1.05",1.05 (< 5.0),RETAIN (Physical Runway Performance Factor)
+total_routes,Target Derivative,Direct Mathematical Derivation of Hub_Status,Severe (Infinite),EXCLUDE (CRITICAL: TARGET LEAKAGE PREVENTION)
+iata_code,Identifier,High-cardinality discrete text string,N/A,EXCLUDE (Zero Generalizability / Identifier)
+airport_ident,Identifier,Unique database primary key string,N/A,EXCLUDE (Database Primary Key)
+airport_name,Identifier,Unique airport label string,N/A,EXCLUDE (Descriptive Label Only)

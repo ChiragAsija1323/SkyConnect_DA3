@@ -1,0 +1,3 @@
+Model,R_Squared,RMSE_ft,MAE_ft
+Linear Regression (OLS),0.395,2049.1,1613.4
+Random Forest Regressor,0.4551,1994.9,1507.3

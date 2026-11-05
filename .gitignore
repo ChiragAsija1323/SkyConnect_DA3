@@ -1,0 +1,19 @@
+# History and session files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Microsoft Office temporary lock files
+~$*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class

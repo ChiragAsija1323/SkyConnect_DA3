@@ -1,0 +1,14 @@
+Variable,Data_Type,Scale_of_Measurement,Total_Records,Missing_Count,Missing_Percentage
+airport_ident,character,Identifier / Text,4569,0,0
+iata_code,character,Identifier / Text,4569,0,0
+airport_name,character,Identifier / Text,4569,0,0
+airport_type,character,Categorical Nominal,4569,0,0
+latitude_deg,numeric,Continuous Ratio,4569,0,0
+longitude_deg,numeric,Continuous Ratio,4569,0,0
+elevation_ft,numeric,Continuous Ratio,4569,47,1.03
+continent,character,Categorical Nominal,4569,0,0
+iso_country,character,Categorical Nominal,4569,12,0.26
+num_runways,integer,Discrete Ratio,4569,0,0
+max_runway_length,numeric,Continuous Ratio,4569,0,0
+has_paved_runway,integer,Binary Nominal,4569,0,0
+total_routes,integer,Discrete Ratio,4569,0,0

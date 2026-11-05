@@ -1,0 +1,7 @@
+Test_Name,Variable,Test_Statistic,Degrees_of_Freedom,p_value,Effect_Size,Interpretation
+Welch's Two-Sample t-test,max_runway_length vs Hub_Status,t = -36.31,756.6,6.44e-168,Cohen's d = 1.39,"Hubs have significantly longer runways (p < 0.001, large effect size). Crucial ML predictor."
+Mann-Whitney U Test,num_runways vs Hub_Status,W = 691602,NA,1.80e-45,Rank-Biserial = 0.48,Hubs have significantly higher runway counts (p < 0.001). Statistically valid predictor.
+Mann-Whitney U Test,elevation_ft vs Hub_Status,W = 1209563,NA,4.32e-11,Rank-Biserial = 0.08,Weak rank difference. Elevation provides limited marginal predictive power.
+Chi-Square Test of Independence,airport_type vs Hub_Status,Chi2 = 1501.72,1,0.00e+00,Cramer's V = 0.58,"Strong categorical dependency (p < 0.001, moderate association). Highly predictive."
+Chi-Square Test of Independence,has_paved_runway vs Hub_Status,Chi2 = 16.07,1,6.11e-05,Cramer's V = 0.06,Statistically significant (p < 0.001): 99.7% of hubs are paved vs 87% regular.
+One-Way ANOVA,max_runway_length across continent,F = 102.42,5,1.27e-102,Eta-Sq = 0.102,Runway lengths vary significantly by global region (p < 0.001). Geography must be retained.

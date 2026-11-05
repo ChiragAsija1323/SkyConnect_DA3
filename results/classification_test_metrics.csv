@@ -1,0 +1,7 @@
+Metric,Value
+Test Accuracy,0.92
+Sensitivity (Recall),0.4804
+Specificity,0.9762
+Precision (PPV),0.7206
+F1-Score,0.5765
+ROC-AUC,0.9437

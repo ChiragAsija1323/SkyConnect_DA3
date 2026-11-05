@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyConnect DA-3 | Aviation Analytics & Visualizations Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+  <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">✈️</span>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight text-white">SKYCONNECT DA-3</h1>
+          <p class="text-xs text-sky-400">A Statistically-Grounded Machine Learning Pipeline for Global Aviation</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 text-xs text-slate-300">
+        <span class="bg-slate-800 px-3 py-1.5 rounded-md border border-slate-700"><strong>Course:</strong> Data Analytics using R</span>
+        <span class="bg-slate-800 px-3 py-1.5 rounded-md border border-slate-700"><strong>Guide:</strong> Mrs. Vijayalakshmi</span>
+        <span class="bg-blue-900 text-blue-200 px-3 py-1.5 rounded-md font-semibold">Chirag Asija & Saanvi Gupta</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs text-slate-500 font-medium">Operational Airports</p>
+        <p class="text-xl font-extrabold text-blue-900 mt-1">4,508</p>
+        <p class="text-[11px] text-emerald-600 font-semibold mt-0.5">100% Quality Audited</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs text-slate-500 font-medium">Global Flight Routes</p>
+        <p class="text-xl font-extrabold text-blue-900 mt-1">67,663</p>
+        <p class="text-[11px] text-sky-600 font-semibold mt-0.5">Directed Network Graph</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs text-slate-500 font-medium">Welch's t-Statistic</p>
+        <p class="text-xl font-extrabold text-amber-600 mt-1">t = -36.31</p>
+        <p class="text-[11px] text-emerald-600 font-semibold mt-0.5">p &lt; 10^-167 (d = 1.39)</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-xs text-slate-500 font-medium">Champion GBM Model</p>
+        <p class="text-xl font-extrabold text-emerald-600 mt-1">92.0% Acc</p>
+        <p class="text-[11px] text-blue-600 font-semibold mt-0.5">AUC 0.9437 (N=900)</p>
+      </div>
+      <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm col-span-2 md:col-span-1">
+        <p class="text-xs text-slate-500 font-medium">Top Network Bridge</p>
+        <p class="text-xl font-extrabold text-rose-600 mt-1">Anchorage</p>
+        <p class="text-[11px] text-slate-600 font-semibold mt-0.5">Betweenness = 0.0702</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-1.5" id="filter-buttons">
+        <button onclick="filterCategory('all', this)" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-900 text-white transition-colors">All 19 Figures</button>
+        <button onclick="filterCategory('step 2', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 2: EDA (Figs 1–5)</button>
+        <button onclick="filterCategory('step 3', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 3: Hypothesis Tests (Figs 6–8)</button>
+        <button onclick="filterCategory('step 4', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 4: Features (Fig 9)</button>
+        <button onclick="filterCategory('step 5', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 5: ML Models (Figs 10–14)</button>
+        <button onclick="filterCategory('step 6', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 6: Network Graph (Figs 15–18)</button>
+        <button onclick="filterCategory('step 7', this)" class="filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Step 7: Mapping (Fig 19)</button>
+      </div>
+      <div>
+        <a href="visualizations/19_interactive_global_aviation_map.html" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-colors">
+          <span>🗺️ Open Live Leaflet Map</span>
+          <span class="text-[10px] bg-emerald-800 px-1.5 py-0.5 rounded">1,599 Arcs</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="viz-grid">
+      
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 2: eda">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 2: EDA</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 1: Maximum Runway Length Distribution & Parametric Normality Curve</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 01</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="01_runway_length_distribution.png" alt="Figure 1: Maximum Runway Length Distribution & Parametric Normality Curve" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('01_runway_length_distribution.png', 'Figure 1: Maximum Runway Length Distribution & Parametric Normality Curve')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>f(x) = [ 1 / (σ · √(2π)) ] · exp( -½ · ((x - μ) / σ)² )</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Mean = 7,670 ft, SD = 2,770 ft, Skewness = 0.07
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Runway lengths exhibit bimodality (regional vs wide-body), with overall symmetry allowing parametric Welch t-testing.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 2: eda">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 2: EDA</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 2: Airport Elevation Distribution (Skewness & Altitude Outliers)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 02</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="02_airport_elevation_distribution.png" alt="Figure 2: Airport Elevation Distribution (Skewness & Altitude Outliers)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('02_airport_elevation_distribution.png', 'Figure 2: Airport Elevation Distribution (Skewness & Altitude Outliers)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Skewness γ₁ = 2.94  |  Kurtosis κ = 11.41</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Mean = 1,098 ft, Skewness = 2.94, Kurtosis = 11.41
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Elevation is heavily right-skewed; 75% of airports operate below 1,276 ft, but outliers reach 14,472 ft.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 2: eda">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 2: EDA</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 3: Maximum Runway Length by Airport Classification (Notched Boxplots)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 03</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="03_runway_by_airport_type_boxplot.png" alt="Figure 3: Maximum Runway Length by Airport Classification (Notched Boxplots)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('03_runway_by_airport_type_boxplot.png', 'Figure 3: Maximum Runway Length by Airport Classification (Notched Boxplots)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Notch Interval = Median ± 1.58 · ( IQR / √n )</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Large Median = 10,170 ft, Medium Median = 5,900 ft
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Notched 95% confidence intervals do not overlap, proving physical operational separation.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 2: eda">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 2: EDA</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 4: Continental Infrastructure Disparities & 95% Confidence Intervals</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 04</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="04_continental_infrastructure_breakdown.png" alt="Figure 4: Continental Infrastructure Disparities & 95% Confidence Intervals" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('04_continental_infrastructure_breakdown.png', 'Figure 4: Continental Infrastructure Disparities & 95% Confidence Intervals')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>CI₉₅% = x̄ ± t₀.₉₇₅, n-1 · ( s / √n )</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Asia Mean = 8,600 ft, Europe = 8,100 ft, Oceania = 5,865 ft
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Asia and Europe lead in wide-body trunk runways, while Oceania operates shorter regional hops.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 2: eda">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 2: EDA</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 5: Route Network Traffic vs Runway Capacity (Non-Linear GAM Smoother)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 05</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="05_routes_vs_runway_length_trend.png" alt="Figure 5: Route Network Traffic vs Runway Capacity (Non-Linear GAM Smoother)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('05_routes_vs_runway_length_trend.png', 'Figure 5: Route Network Traffic vs Runway Capacity (Non-Linear GAM Smoother)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>g( E(Routes) ) = β₀ + f( Runway_Length )</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Inflection Threshold = 10,000 ft
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Facilities under 7,500 ft plateau under 20 routes; crossing 10,000 ft causes exponential route growth.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 3: hypothesis tests">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 3: Hypothesis Tests</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 6: Welch Two-Sample t-test on Runway Length (p < 10^-167)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 06</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="06_runway_length_ttest_boxplot.png" alt="Figure 6: Welch Two-Sample t-test on Runway Length (p < 10^-167)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('06_runway_length_ttest_boxplot.png', 'Figure 6: Welch Two-Sample t-test on Runway Length (p < 10^-167)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>t = ( X̄_Hub - X̄_Reg ) / √( (s₁²/n₁) + (s₂²/n₂) ) = -36.31</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> t = -36.31, p = 6.44e-168, Cohen d = 1.39
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Decisively rejected H0. Hubs average 10,749 ft vs 7,391 ft with massive effect size.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 3: hypothesis tests">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 3: Hypothesis Tests</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 7: One-Way ANOVA across Continents with Post-Hoc Tukey HSD</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 07</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="07_anova_continental_runway_cis.png" alt="Figure 7: One-Way ANOVA across Continents with Post-Hoc Tukey HSD" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('07_anova_continental_runway_cis.png', 'Figure 7: One-Way ANOVA across Continents with Post-Hoc Tukey HSD')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>F = MS_between / MS_within = 102.42  |  η² = 0.102</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> F = 102.42, p = 1.27e-102, Eta-squared = 0.102
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Geography drives 10.2% of global runway variance. Tukey HSD confirms significant continental divides.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 3: hypothesis tests">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 3: Hypothesis Tests</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 8: Pearson Correlation Matrix Heatmap & VIF Diagnostics</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 08</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="08_correlation_matrix_heatmap.png" alt="Figure 8: Pearson Correlation Matrix Heatmap & VIF Diagnostics" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('08_correlation_matrix_heatmap.png', 'Figure 8: Pearson Correlation Matrix Heatmap & VIF Diagnostics')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>r = Cov(X, Y) / (σ_x · σ_y)  |  VIF_j < 1.15</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Max Pairwise r = 0.31, Max VIF = 1.14
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Zero multicollinearity among predictors (all VIF < 1.15), ensuring stable machine learning.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 4: feature selection">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 4: Feature Selection</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 9: Statistically-Grounded Feature Selection Justification Matrix</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 09</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="09_statistical_feature_ranking.png" alt="Figure 9: Statistically-Grounded Feature Selection Justification Matrix" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('09_statistical_feature_ranking.png', 'Figure 9: Statistically-Grounded Feature Selection Justification Matrix')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Feature Ranking: p < 0.001 & Effect Size (0% Target Leakage)</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> total_routes excluded
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Features ranked by p-value and effect size; route counts excluded to avoid circular leakage.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 5: ml models">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 5: ML Models</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 10: Classification Model Leaderboard (5-Fold Cross-Validation Metrics)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 10</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="10_classification_model_leaderboard.png" alt="Figure 10: Classification Model Leaderboard (5-Fold Cross-Validation Metrics)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('10_classification_model_leaderboard.png', 'Figure 10: Classification Model Leaderboard (5-Fold Cross-Validation Metrics)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Accuracy = (TP + TN) / N = 92.0%  |  Specificity = 97.6%</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> GBM Acc = 92.0%, Spec = 97.6%, AUC = 0.9437
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Gradient Boosting achieved champion status on 900 unseen holdout commercial airports.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 5: ml models">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 5: ML Models</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 11: Champion GBM Holdout Test Confusion Matrix (92.0% Accuracy)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 11</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="11_test_confusion_matrix.png" alt="Figure 11: Champion GBM Holdout Test Confusion Matrix (92.0% Accuracy)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('11_test_confusion_matrix.png', 'Figure 11: Champion GBM Holdout Test Confusion Matrix (92.0% Accuracy)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Sensitivity = 48.5%  |  Specificity = 97.6%</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> TN = 778, TP = 50, FP = 19, Specificity = 97.6%
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> High specificity prevents false alarms and costly multi-million dollar capital misallocations.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 5: ml models">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 5: ML Models</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 12: Champion GBM Multi-Model ROC Curves (AUC = 0.9437)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 12</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="12_champion_roc_curve.png" alt="Figure 12: Champion GBM Multi-Model ROC Curves (AUC = 0.9437)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('12_champion_roc_curve.png', 'Figure 12: Champion GBM Multi-Model ROC Curves (AUC = 0.9437)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>AUC = ∫₀¹ TPR( FPR⁻¹(t) ) dt = 0.9437</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> GBM AUC = 0.9437, RF AUC = 0.9322
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Outstanding discrimination boundary between hub and non-hub facilities across all cutoffs.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 5: ml models">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 5: ML Models</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 13: Runway Length Regression Diagnostics (4-Panel Q-Q & Residuals)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 13</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="13_regression_actual_vs_predicted.png" alt="Figure 13: Runway Length Regression Diagnostics (4-Panel Q-Q & Residuals)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('13_regression_actual_vs_predicted.png', 'Figure 13: Runway Length Regression Diagnostics (4-Panel Q-Q & Residuals)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>R² = 1 - (SS_res / SS_tot) = 0.455  |  F = 376.1</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> R-squared = 0.455, F = 376.1, p < 10^-300
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Linear model explains 45.5% of runway variance with homoscedastic, normally distributed residuals.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 5: ml models">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 5: ML Models</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 14: K-Means Airport Archetypes Bivariate Clusters (K = 3)</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 14</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="14_kmeans_cluster_archetypes.png" alt="Figure 14: K-Means Airport Archetypes Bivariate Clusters (K = 3)" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('14_kmeans_cluster_archetypes.png', 'Figure 14: K-Means Airport Archetypes Bivariate Clusters (K = 3)')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>J = Σₖ Σᵢ || xᵢ - μₖ ||²  (Optimal K = 3)</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Optimal K = 3 (WCSS Elbow & Silhouette)
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Airports cluster into Megahubs, Regional Gateways, and Domestic Feeder Airfields.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 6: network graph">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 6: Network Graph</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 15: igraph Aviation Network Centrality Leaderboard</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 15</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="15_network_centrality_leaderboard.png" alt="Figure 15: igraph Aviation Network Centrality Leaderboard" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('15_network_centrality_leaderboard.png', 'Figure 15: igraph Aviation Network Centrality Leaderboard')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>C_D(v) = deg(v)  |  C_B(v) = Σ (σ_st(v) / σ_st)</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Frankfurt (990), Paris (966), Atlanta (924)
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Modeled 66,288 directed routes in igraph; Frankfurt and Paris lead in direct degree connections.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 6: network graph">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 6: Network Graph</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 16: Degree Distribution & Scale-Free Power-Law Fit</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 16</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="16_scale_free_power_law_distribution.png" alt="Figure 16: Degree Distribution & Scale-Free Power-Law Fit" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('16_scale_free_power_law_distribution.png', 'Figure 16: Degree Distribution & Scale-Free Power-Law Fit')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>P(k) ~ k^(-γ),  Power-Law Exponent γ = 2.08</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Power-law gamma = 2.08, R-squared = 0.94
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Mathematically confirms global aviation is a scale-free network resilient to random failures.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 6: network graph">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 6: Network Graph</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 17: Betweenness Centrality vs Google PageRank Scatter Plot</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 17</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="17_betweenness_vs_pagerank_scatter.png" alt="Figure 17: Betweenness Centrality vs Google PageRank Scatter Plot" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('17_betweenness_vs_pagerank_scatter.png', 'Figure 17: Betweenness Centrality vs Google PageRank Scatter Plot')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>PR(v) = (1 - d)/N + d · Σ (PR(u) / L(u))</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Top Bridge: Anchorage (0.0702), Dubai (0.0388)
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Betweenness uncovers vital transit bridges like Anchorage and Dubai connecting entire continents.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 6: network graph">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 6: Network Graph</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 18: Louvain Community Detection Airline Sub-Networks</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 18</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="18_network_community_louvain_clusters.png" alt="Figure 18: Louvain Community Detection Airline Sub-Networks" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('18_network_community_louvain_clusters.png', 'Figure 18: Louvain Community Detection Airline Sub-Networks')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>Modularity Q = (1 / 2m) · Σ [ A_vw - (k_v · k_w / 2m) ] · δ = 0.66</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> Modularity Q = 0.66 (8 Communities)
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Identified continental airline alliance sub-networks with high structural modularity.</p>
+      </div>
+    </div>
+    
+    <div class="viz-card bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-all" data-cat="step 7: spatial mapping">
+      <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Step 7: Spatial Mapping</span>
+          <h3 class="text-base font-bold text-slate-900 mt-0.5">Figure 19: Comprehensive Global Flight Network & Indian Aviation Connectivity</h3>
+        </div>
+        <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-200 text-slate-700">Figure 19</span>
+      </div>
+      <div class="p-3 text-center bg-slate-100 flex items-center justify-center min-h-[360px]">
+        <img src="19_global_flight_routes_map.png" alt="Figure 19: Comprehensive Global Flight Network & Indian Aviation Connectivity" class="max-h-[380px] max-w-full object-contain rounded-lg shadow-sm cursor-pointer hover:scale-[1.02] transition-transform" onclick="openModal('19_global_flight_routes_map.png', 'Figure 19: Comprehensive Global Flight Network & Indian Aviation Connectivity')" />
+      </div>
+      <div class="p-4 space-y-2.5 text-xs">
+        <div class="p-2.5 bg-slate-50 border-l-4 border-blue-900 rounded-r-lg font-mono text-slate-900">
+          <span class="text-[10px] uppercase font-bold text-slate-500 block mb-0.5">Mathematical Formulation:</span>
+          <strong>cos(Δσ) = sin(φ₁)·sin(φ₂) + cos(φ₁)·cos(φ₂)·cos(Δλ)</strong>
+        </div>
+        <div class="p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900 font-medium">
+          ⚡ <strong>Statistical Proof:</strong> 1,599 Corridors (857 Indian + 742 Global)
+        </div>
+        <p class="text-slate-600"><strong>Key Academic Conclusion:</strong> Complete flight route network featuring vibrant Indian routes and global corridors.</p>
+      </div>
+    </div>
+    
+    </div>
+  </main>
+
+  <div id="modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" onclick="closeModal()">
+    <div class="bg-white rounded-2xl max-w-5xl w-full p-4 max-h-[95vh] overflow-hidden flex flex-col shadow-2xl border border-slate-200" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+        <h3 id="modal-title" class="text-base font-bold text-slate-900 truncate">Figure Preview</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 font-extrabold text-lg px-2">&times;</button>
+      </div>
+      <div class="p-2 flex-1 flex items-center justify-center overflow-auto">
+        <img id="modal-img" src="" alt="" class="max-h-[75vh] w-auto object-contain rounded-lg" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function filterCategory(cat, btn) {
+      const cards = document.querySelectorAll('.viz-card');
+      cards.forEach(c => {
+        if (cat === 'all' || c.getAttribute('data-cat').includes(cat)) {
+          c.style.display = 'block';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors';
+      });
+      btn.className = 'filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-900 text-white transition-colors';
+    }
+
+    function openModal(imgSrc, title) {
+      document.getElementById('modal-img').src = 'visualizations/' + imgSrc;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+"","latitude_deg","longitude_deg","elevation_ft","num_runways","max_runway_length"
+"latitude_deg",1,-0.238,-0.059,0.086,0.127
+"longitude_deg",-0.238,1,-0.048,-0.194,0.108
+"elevation_ft",-0.059,-0.048,1,-0.013,0.173
+"num_runways",0.086,-0.194,-0.013,1,0.185
+"max_runway_length",0.127,0.108,0.173,0.185,1
