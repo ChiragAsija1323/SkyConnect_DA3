@@ -6,9 +6,9 @@
 ### Academic & Project Metadata
 * **Academic Year**: 2026–2027
 * **Faculty Guide**: Mrs. Vijayalakshmi
-* **Student Authors**:
-  * **Chirag Asija** (`24BDS1073`)
-  * **Saanvi Gupta** (`24BDS1023`)
+* **Project Contributors & Student Authors**:
+  * **Chirag Asija** ([@ChiragAsija1323](https://github.com/ChiragAsija1323)) — `24BDS1073`
+  * **Saanvi Gupta** ([@saanvigpta2611-0510](https://github.com/saanvigpta2611-0510)) — `24BDS1023`
 * **Project Directory**: `/Users/chiragasija/Downloads/SkyConnect_DA3`
 
 ---
