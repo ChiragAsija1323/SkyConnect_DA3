@@ -1,5 +1,5 @@
 # SkyConnect DA-3: 12–15 Minute Video Presentation Script & Slide Guide
-**Course:** Data Analytics using R (60-Mark Capstone Evaluation)  
+**Course:** Data Analytics using R  
 **Academic Year:** 2026–2027 | **Faculty Guide:** Mrs. Vijayalakshmi  
 **Presenters:** Chirag Asija (`24BDS1073`) & Saanvi Gupta (`24BDS1023`)  
 **Total Target Duration:** 14 Minutes (Chirag: 7:00 min | Saanvi: 7:00 min — Exactly 50/50 Split)

@@ -1,8 +1,8 @@
 # SkyConnect DA-3: Complete Viva Defense & Presentation Guide
-**A University Student's Step-by-Step Guide for the 60-Mark Final Evaluation**
+**A University Student's Step-by-Step Guide for the Capstone Evaluation**
 
 * **Project Title**: SkyConnect DA-3 — A Statistically-Grounded Machine Learning Pipeline for Global Aviation Infrastructure & Airline Networks
-* **Course**: Data Analytics using R (60-Mark Capstone Evaluation)
+* **Course**: Data Analytics using R
 * **Team Members**: Chirag Asija (`24BDS1073`) & Saanvi Gupta (`24BDS1023`)
 * **Faculty Guide**: Mrs. Vijayalakshmi
 

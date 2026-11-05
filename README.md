@@ -3,8 +3,7 @@
 
 ---
 
-### Academic & Course Metadata
-* **Course**: Data Analytics using R (60-Mark Capstone Evaluation)
+### Academic & Project Metadata
 * **Academic Year**: 2026–2027
 * **Faculty Guide**: Mrs. Vijayalakshmi
 * **Student Authors**:
